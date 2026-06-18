@@ -1,6 +1,6 @@
 # 🇨🇴 ¿Con cuál plan de gobierno coincides? · Segunda vuelta 2026
 
-Quiz interactivo (15 preguntas) que compara los **programas de gobierno de segunda vuelta** de
+Quiz interactivo (10 preguntas) que compara los **programas de gobierno de segunda vuelta** de
 **Abelardo de la Espriella** («País Milagro») e **Iván Cepeda** («Tres revoluciones para hacer de
 Colombia una potencia mundial de la vida»).
 

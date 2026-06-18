@@ -150,7 +150,7 @@
   <div id="quiz"></div>
 
   <div class="barra">
-    <div class="progreso" id="progreso">0 / 15 respondidas</div>
+    <div class="progreso" id="progreso">0 / 10 respondidas</div>
     <button class="calc" id="btnCalc">✨ Ver mi resultado ✨</button>
   </div>
 
@@ -176,37 +176,18 @@
 </div>
 
 <script>
-// value: "E" = De la Espriella · "C" = Cepeda. El orden A/B está mezclado a propósito.
+// value: "E" = De la Espriella · "C" = Cepeda. Orden A/B mezclado a propósito.
+// Selección de 10 temas donde ambos planes proponen algo en el mismo terreno (las menos obvias).
 const preguntas = [
-  { t:"Hoja de coca y cultivos ilícitos", o:[
-    {x:"Transformar la hoja de coca, la marihuana y la amapola en usos industriales, alimentarios y farmacéuticos legales, trasladando el control del mercado de las mafias al Estado mediante regulación participativa.", v:"C"},
-    {x:"Destruir las 330.000 hectáreas de coca con fumigación aérea, erradicación manual, extinción de dominio exprés y extradición.", v:"E"}
-  ]},
   { t:"Crisis de la salud y las EPS", o:[
     {x:"Conservar las EPS pero hacerlas eficientes, con topes a sus gastos de administración, revisión trimestral de la UPC y un plan de choque de $10 billones que preserve lo que funciona.", v:"E"},
     {x:"Eliminar la intermediación financiera, volver los CAPS la puerta de entrada al sistema (Atención Primaria) y que los recursos fluyan directo a una red pública de hospitales.", v:"C"}
-  ]},
-  { t:"Matriz energética", o:[
-    {x:"Recuperar la exploración y producción de petróleo y gas, acelerar proyectos costa afuera, evaluar yacimientos no convencionales y abrir una política de energía nuclear.", v:"E"},
-    {x:"Superar la dependencia de los combustibles fósiles, alcanzar al menos 10 GW de renovables y crear comunidades energéticas de sol y viento.", v:"C"}
-  ]},
-  { t:"Tamaño del Estado", o:[
-    {x:"Fortalecer lo público y la banca pública estatal para financiar sectores estratégicos y ampliar los programas sociales.", v:"C"},
-    {x:"Reducir el aparato estatal hasta en un 40%, eliminar la nómina paralela y fusionar agencias, con un ajuste inicial de unos $70 billones.", v:"E"}
-  ]},
-  { t:"Sistema tributario", o:[
-    {x:"Reducir la carga tributaria y modernizar la DIAN con inteligencia artificial para crear un ecosistema pro-empresa que impulse el crecimiento.", v:"E"},
-    {x:"Eliminar privilegios y exenciones tributarias, subir la tributación sobre altas rentas y grandes patrimonios, y crear fiscalidad digital a las plataformas.", v:"C"}
   ]},
   { t:"Anticorrupción en la contratación pública", o:[
     {x:"Reformar la Ley 80 para que organizaciones comunitarias y Juntas de Acción Comunal contraten directamente, y crear una Unidad de Investigación de la Macrocorrupción en la Fiscalía.", v:"C"},
     {x:"Llevar toda la contratación pública a tecnología blockchain para 2030 y crear un Bloque de Búsqueda contra la Corrupción dirigido por el presidente.", v:"E"}
   ]},
-  { t:"Grupos armados ilegales y paz", o:[
-    {x:"Con los criminales no habrá negociación: recuperar el monopolio estatal de las armas, reconstruir la Fuerza Pública y construir 7 megacárceles.", v:"E"},
-    {x:"Implementar integralmente el Acuerdo Final de Paz de 2016, con enfoque de seguridad humana y sustitución concertada de las economías ilícitas.", v:"C"}
-  ]},
-  { t:"Tierra y propiedad rural", o:[
+  { t:"Tierra y desarrollo del campo", o:[
     {x:"Redistribuir tierras fértiles concentradas y subutilizadas, restituir las tierras despojadas y crear la Alianza Nacional Alimentaria para eliminar intermediarios.", v:"C"},
     {x:"Acabar la falsa reforma agraria, volver propietario al campesino y expandir la frontera agrícola en 1,5 millones de hectáreas (la altillanura).", v:"E"}
   ]},
@@ -274,7 +255,6 @@ document.getElementById('btnCalc').addEventListener('click', () => {
     const faltan = preguntas.length - n;
     prog.textContent = `Te faltan ${faltan} pregunta${faltan>1?'s':''} por responder 🌸`;
     prog.classList.remove('shake'); void prog.offsetWidth; prog.classList.add('shake');
-    // llevar a la primera sin responder
     for(let i=0;i<preguntas.length;i++){
       if(!document.querySelector(`input[name="q${i}"]:checked`)){
         document.querySelector(`.card[data-idx="${i}"]`).scrollIntoView({behavior:'smooth',block:'center'});
@@ -298,17 +278,17 @@ document.getElementById('btnCalc').addEventListener('click', () => {
     nombre.textContent = "🌹 Abelardo de la Espriella";
     nombre.style.color = "var(--rosa-fuerte)";
     programa.textContent = "«País Milagro»";
-    texto.textContent = `Tu mayoría de respuestas (${e} de 15) coincide con su programa de gobierno.`;
+    texto.textContent = `Tu mayoría de respuestas (${e} de ${preguntas.length}) coincide con su programa de gobierno.`;
   } else if(c>e){
     nombre.textContent = "💧 Iván Cepeda";
     nombre.style.color = "var(--celeste-fuerte)";
     programa.textContent = "«Tres revoluciones para hacer de Colombia una potencia mundial de la vida»";
-    texto.textContent = `Tu mayoría de respuestas (${c} de 15) coincide con su programa de gobierno.`;
+    texto.textContent = `Tu mayoría de respuestas (${c} de ${preguntas.length}) coincide con su programa de gobierno.`;
   } else {
     nombre.textContent = "🤝 ¡Empate!";
     nombre.style.color = "#a07ab0";
     programa.textContent = "Eres un votante de centro / cruzado";
-    texto.textContent = "Quedaste 7–7 (más una): coincides por partes con ambos planes. Te conviene leer los dos programas completos en los temas donde dudaste.";
+    texto.textContent = `Quedaste ${e}–${c}: coincides por partes con ambos planes. Te conviene leer los dos programas completos en los temas donde dudaste.`;
   }
 
   document.getElementById('resultado').style.display = 'block';
