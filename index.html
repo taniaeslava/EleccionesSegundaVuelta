@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Con cuál plan coincides? · Segunda vuelta 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rosa:#ff9ec4;
+    --rosa-suave:#ffd9e8;
+    --rosa-fuerte:#f5689f;
+    --celeste:#8fd6ee;
+    --celeste-suave:#d6f1fa;
+    --celeste-fuerte:#52b6da;
+    --texto:#5a4a55;
+    --tarjeta:#fffafc;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Nunito',sans-serif;
+    color:var(--texto);
+    background:linear-gradient(135deg,#ffe3ef 0%,#fbe9f5 35%,#e2f3fb 70%,#d6f1fa 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    padding:28px 14px 60px;
+    line-height:1.5;
+  }
+  .wrap{max-width:760px;margin:0 auto;}
+  header.hero{
+    text-align:center;
+    background:linear-gradient(120deg,var(--rosa-suave),var(--celeste-suave));
+    border-radius:28px;
+    padding:34px 26px 28px;
+    box-shadow:0 12px 30px rgba(245,104,159,.18);
+    margin-bottom:22px;
+  }
+  header.hero h1{
+    font-family:'Comfortaa',cursive;
+    font-size:clamp(1.5rem,4.6vw,2.2rem);
+    margin:0 0 8px;
+    color:var(--rosa-fuerte);
+    letter-spacing:.5px;
+  }
+  header.hero p{margin:6px 0 0;font-size:1.02rem;color:#7a6470;}
+  .pills{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap;}
+  .pill{
+    font-size:.82rem;font-weight:700;padding:6px 14px;border-radius:999px;
+  }
+  .pill.rosa{background:var(--rosa);color:#fff;}
+  .pill.celeste{background:var(--celeste-fuerte);color:#fff;}
+  .aviso{
+    background:#fff6fa;border:2px dashed var(--rosa);border-radius:18px;
+    padding:14px 18px;margin-bottom:24px;font-size:.92rem;color:#8a6a78;text-align:center;
+  }
+  .aviso strong{color:var(--rosa-fuerte);}
+  .card{
+    background:var(--tarjeta);
+    border-radius:22px;
+    padding:22px 22px 18px;
+    margin-bottom:18px;
+    box-shadow:0 8px 22px rgba(130,170,200,.16);
+    border:1px solid #fdeaf2;
+  }
+  .qnum{
+    display:inline-block;font-family:'Comfortaa',cursive;font-weight:700;
+    font-size:.8rem;color:#fff;background:linear-gradient(120deg,var(--rosa),var(--celeste-fuerte));
+    padding:4px 12px;border-radius:999px;margin-bottom:10px;
+  }
+  .qtext{font-weight:700;font-size:1.12rem;margin:0 0 14px;color:#5a4a55;}
+  .opt{display:block;cursor:pointer;margin-bottom:10px;}
+  .opt input{position:absolute;opacity:0;pointer-events:none;}
+  .opt .box{
+    display:flex;align-items:flex-start;gap:12px;
+    border:2px solid #f0e2ea;border-radius:16px;padding:13px 15px;
+    background:#fff;transition:all .18s ease;font-size:.98rem;
+  }
+  .opt .letra{
+    flex:0 0 auto;width:26px;height:26px;border-radius:50%;
+    background:#f3e6ee;color:#a98aa0;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:.85rem;transition:all .18s ease;
+  }
+  .opt:hover .box{border-color:var(--celeste);background:var(--celeste-suave);}
+  .opt input:checked + .box{
+    border-color:var(--rosa-fuerte);
+    background:linear-gradient(120deg,#fff0f6,#eaf7fc);
+    box-shadow:0 4px 12px rgba(245,104,159,.18);
+  }
+  .opt input:checked + .box .letra{background:var(--rosa-fuerte);color:#fff;}
+  .barra{
+    position:sticky;bottom:14px;margin-top:6px;text-align:center;
+  }
+  button.calc{
+    font-family:'Comfortaa',cursive;font-weight:700;font-size:1.1rem;color:#fff;
+    background:linear-gradient(120deg,var(--rosa-fuerte),var(--celeste-fuerte));
+    border:none;border-radius:999px;padding:15px 38px;cursor:pointer;
+    box-shadow:0 8px 22px rgba(245,104,159,.35);transition:transform .15s ease;
+  }
+  button.calc:hover{transform:translateY(-2px) scale(1.02);}
+  .progreso{font-size:.9rem;color:#9a7e8c;margin-bottom:10px;font-weight:600;}
+  /* Resultado */
+  #resultado{display:none;margin-top:10px;}
+  .res-card{
+    background:var(--tarjeta);border-radius:26px;padding:30px 26px;text-align:center;
+    box-shadow:0 14px 34px rgba(245,104,159,.22);border:1px solid #fdeaf2;
+  }
+  .res-card h2{font-family:'Comfortaa',cursive;color:var(--rosa-fuerte);margin:0 0 6px;font-size:1.5rem;}
+  .res-nombre{font-family:'Comfortaa',cursive;font-size:1.7rem;margin:10px 0 4px;}
+  .res-prog{font-style:italic;color:#7a6470;margin:0 0 18px;}
+  .marcador{display:flex;gap:14px;justify-content:center;margin:18px 0;flex-wrap:wrap;}
+  .barita{flex:1;min-width:140px;background:#fff;border-radius:18px;padding:14px;border:2px solid #f0e2ea;}
+  .barita .n{font-family:'Comfortaa',cursive;font-size:2rem;font-weight:700;}
+  .barita.c{border-color:var(--celeste-fuerte);}
+  .barita.c .n{color:var(--celeste-fuerte);}
+  .barita.e{border-color:var(--rosa-fuerte);}
+  .barita.e .n{color:var(--rosa-fuerte);}
+  .barita .lbl{font-size:.92rem;font-weight:700;}
+  button.reset{
+    margin-top:14px;font-family:'Nunito';font-weight:700;color:var(--rosa-fuerte);
+    background:#fff;border:2px solid var(--rosa);border-radius:999px;padding:11px 26px;cursor:pointer;
+  }
+  button.reset:hover{background:var(--rosa-suave);}
+  .res-aviso{font-size:.85rem;color:#9a7e8c;margin-top:18px;line-height:1.5;}
+  footer{text-align:center;font-size:.8rem;color:#a991a1;margin-top:26px;}
+  .shake{animation:sh .4s;}
+  @keyframes sh{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>¿Con cuál plan de gobierno coincides?</h1>
+    <p>Elecciones presidenciales de Colombia · Segunda vuelta 2026</p>
+    <div class="pills">
+      <span class="pill rosa">Abelardo de la Espriella</span>
+      <span class="pill celeste">Iván Cepeda</span>
+    </div>
+  </header>
+
+  <div class="aviso">
+    🎀 <strong>Solo por jugar.</strong> Este test <strong>no tiene ningún valor jurídico</strong> ni oficial.
+    Resume en una frase propuestas muy amplias de los programas de segunda vuelta, sin reflejar preferencia alguna.
+    Para decidir tu voto, lee los planes completos. 💙
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="barra">
+    <div class="progreso" id="progreso">0 / 15 respondidas</div>
+    <button class="calc" id="btnCalc">✨ Ver mi resultado ✨</button>
+  </div>
+
+  <div id="resultado">
+    <div class="res-card">
+      <h2>Tu resultado</h2>
+      <div class="res-nombre" id="resNombre"></div>
+      <p class="res-prog" id="resPrograma"></p>
+      <div class="marcador">
+        <div class="barita e"><div class="n" id="nE">0</div><div class="lbl">De la Espriella</div></div>
+        <div class="barita c"><div class="n" id="nC">0</div><div class="lbl">Cepeda</div></div>
+      </div>
+      <p id="resTexto" style="font-weight:600;"></p>
+      <button class="reset" id="btnReset">↺ Volver a empezar</button>
+      <p class="res-aviso">
+        Recuerda: es un juego sin validez jurídica. Las propuestas reales son mucho más extensas y matizadas
+        de lo que cabe en una frase. 🌸
+      </p>
+    </div>
+  </div>
+
+  <footer>Hecho con 🌸 y 💧 · Basado en los programas de gobierno de segunda vuelta 2026</footer>
+</div>
+
+<script>
+// value: "E" = De la Espriella · "C" = Cepeda. El orden A/B está mezclado a propósito.
+const preguntas = [
+  { t:"Hoja de coca y cultivos ilícitos", o:[
+    {x:"Transformar la hoja de coca, la marihuana y la amapola en usos industriales, alimentarios y farmacéuticos legales, trasladando el control del mercado de las mafias al Estado mediante regulación participativa.", v:"C"},
+    {x:"Destruir las 330.000 hectáreas de coca con fumigación aérea, erradicación manual, extinción de dominio exprés y extradición.", v:"E"}
+  ]},
+  { t:"Crisis de la salud y las EPS", o:[
+    {x:"Conservar las EPS pero hacerlas eficientes, con topes a sus gastos de administración, revisión trimestral de la UPC y un plan de choque de $10 billones que preserve lo que funciona.", v:"E"},
+    {x:"Eliminar la intermediación financiera, volver los CAPS la puerta de entrada al sistema (Atención Primaria) y que los recursos fluyan directo a una red pública de hospitales.", v:"C"}
+  ]},
+  { t:"Matriz energética", o:[
+    {x:"Recuperar la exploración y producción de petróleo y gas, acelerar proyectos costa afuera, evaluar yacimientos no convencionales y abrir una política de energía nuclear.", v:"E"},
+    {x:"Superar la dependencia de los combustibles fósiles, alcanzar al menos 10 GW de renovables y crear comunidades energéticas de sol y viento.", v:"C"}
+  ]},
+  { t:"Tamaño del Estado", o:[
+    {x:"Fortalecer lo público y la banca pública estatal para financiar sectores estratégicos y ampliar los programas sociales.", v:"C"},
+    {x:"Reducir el aparato estatal hasta en un 40%, eliminar la nómina paralela y fusionar agencias, con un ajuste inicial de unos $70 billones.", v:"E"}
+  ]},
+  { t:"Sistema tributario", o:[
+    {x:"Reducir la carga tributaria y modernizar la DIAN con inteligencia artificial para crear un ecosistema pro-empresa que impulse el crecimiento.", v:"E"},
+    {x:"Eliminar privilegios y exenciones tributarias, subir la tributación sobre altas rentas y grandes patrimonios, y crear fiscalidad digital a las plataformas.", v:"C"}
+  ]},
+  { t:"Anticorrupción en la contratación pública", o:[
+    {x:"Reformar la Ley 80 para que organizaciones comunitarias y Juntas de Acción Comunal contraten directamente, y crear una Unidad de Investigación de la Macrocorrupción en la Fiscalía.", v:"C"},
+    {x:"Llevar toda la contratación pública a tecnología blockchain para 2030 y crear un Bloque de Búsqueda contra la Corrupción dirigido por el presidente.", v:"E"}
+  ]},
+  { t:"Grupos armados ilegales y paz", o:[
+    {x:"Con los criminales no habrá negociación: recuperar el monopolio estatal de las armas, reconstruir la Fuerza Pública y construir 7 megacárceles.", v:"E"},
+    {x:"Implementar integralmente el Acuerdo Final de Paz de 2016, con enfoque de seguridad humana y sustitución concertada de las economías ilícitas.", v:"C"}
+  ]},
+  { t:"Tierra y propiedad rural", o:[
+    {x:"Redistribuir tierras fértiles concentradas y subutilizadas, restituir las tierras despojadas y crear la Alianza Nacional Alimentaria para eliminar intermediarios.", v:"C"},
+    {x:"Acabar la falsa reforma agraria, volver propietario al campesino y expandir la frontera agrícola en 1,5 millones de hectáreas (la altillanura).", v:"E"}
+  ]},
+  { t:"Reglas del juego democrático", o:[
+    {x:"Rechazo a una constituyente, compromiso de lealtad con la Constitución vigente y prohibir a rango constitucional la combinación de todas las formas de lucha.", v:"E"},
+    {x:"Un gran acuerdo nacional con una reforma política y electoral profunda y más mecanismos de participación directa de la ciudadanía.", v:"C"}
+  ]},
+  { t:"Acceso a vivienda", o:[
+    {x:"Programa País de Propietarios: comprar vivienda propia con intereses del 2% a 30 años.", v:"E"},
+    {x:"Crédito asequible a través de la banca pública reformada, dentro de una Revolución Urbana con movilidad limpia y mejoramiento barrial.", v:"C"}
+  ]},
+  { t:"Lucha contra la pobreza", o:[
+    {x:"Duplicar Renta Ciudadana (a 1,6 millones de familias) y ampliar Colombia Mayor a más de 4,2 millones de adultos mayores.", v:"C"},
+    {x:"Reasignar subsidios eliminando su regresividad con cruce Sisbén IV–DIAN, y un Plan Cosecha Solidaria para matar el hambre.", v:"E"}
+  ]},
+  { t:"Mujeres y trabajo de cuidado", o:[
+    {x:"Tratar la violencia contra la mujer como problema de orden público, con rutas judiciales en 72 horas y meta de reducir 40% los feminicidios.", v:"E"},
+    {x:"Institucionalizar un Sistema Nacional de Cuidado con guarderías públicas y cuidadoras profesionalizadas y remuneradas.", v:"C"}
+  ]},
+  { t:"Motor del crecimiento económico", o:[
+    {x:"No resignarse al 3% y crecer al 7% como Corea del Sur y Singapur, mediante una Gran Revolución de Desregulación.", v:"E"},
+    {x:"Un pacto productivo de reindustrialización con cadenas de valor estratégicas y las economías populares como socias.", v:"C"}
+  ]},
+  { t:"Educación superior", o:[
+    {x:"Garantizar gratuidad y permanencia en la universidad pública, construir 80 proyectos de infraestructura y reformar el ICETEX condonando deudas.", v:"C"},
+    {x:"Créditos blandos y un programa de méritos, Universidad Virtual en Casa y ciclos cortos en IA y robótica.", v:"E"}
+  ]},
+  { t:"Balance del gobierno saliente", o:[
+    {x:"Profundizar y consolidar los avances del actual gobierno como un segundo gobierno del cambio.", v:"C"},
+    {x:"El rumbo debe corregirse de raíz: salvar al país del autoritarismo, la captura del Estado y la Paz Total.", v:"E"}
+  ]}
+];
+
+const letras = ["A","B","C","D"];
+const cont = document.getElementById('quiz');
+
+preguntas.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.idx = i;
+  let html = `<span class="qnum">Pregunta ${i+1} de ${preguntas.length}</span><p class="qtext">${p.t}</p>`;
+  p.o.forEach((op, j) => {
+    html += `
+      <label class="opt">
+        <input type="radio" name="q${i}" value="${op.v}">
+        <span class="box"><span class="letra">${letras[j]}</span><span>${op.x}</span></span>
+      </label>`;
+  });
+  card.innerHTML = html;
+  cont.appendChild(card);
+});
+
+const prog = document.getElementById('progreso');
+function actualizarProgreso(){
+  let n = 0;
+  for(let i=0;i<preguntas.length;i++){ if(document.querySelector(`input[name="q${i}"]:checked`)) n++; }
+  prog.textContent = `${n} / ${preguntas.length} respondidas`;
+  return n;
+}
+cont.addEventListener('change', actualizarProgreso);
+
+document.getElementById('btnCalc').addEventListener('click', () => {
+  const n = actualizarProgreso();
+  if(n < preguntas.length){
+    const faltan = preguntas.length - n;
+    prog.textContent = `Te faltan ${faltan} pregunta${faltan>1?'s':''} por responder 🌸`;
+    prog.classList.remove('shake'); void prog.offsetWidth; prog.classList.add('shake');
+    // llevar a la primera sin responder
+    for(let i=0;i<preguntas.length;i++){
+      if(!document.querySelector(`input[name="q${i}"]:checked`)){
+        document.querySelector(`.card[data-idx="${i}"]`).scrollIntoView({behavior:'smooth',block:'center'});
+        break;
+      }
+    }
+    return;
+  }
+  let e=0,c=0;
+  for(let i=0;i<preguntas.length;i++){
+    const v = document.querySelector(`input[name="q${i}"]:checked`).value;
+    if(v==="E") e++; else c++;
+  }
+  document.getElementById('nE').textContent = e;
+  document.getElementById('nC').textContent = c;
+  const nombre = document.getElementById('resNombre');
+  const programa = document.getElementById('resPrograma');
+  const texto = document.getElementById('resTexto');
+
+  if(e>c){
+    nombre.textContent = "🌹 Abelardo de la Espriella";
+    nombre.style.color = "var(--rosa-fuerte)";
+    programa.textContent = "«País Milagro»";
+    texto.textContent = `Tu mayoría de respuestas (${e} de 15) coincide con su programa de gobierno.`;
+  } else if(c>e){
+    nombre.textContent = "💧 Iván Cepeda";
+    nombre.style.color = "var(--celeste-fuerte)";
+    programa.textContent = "«Tres revoluciones para hacer de Colombia una potencia mundial de la vida»";
+    texto.textContent = `Tu mayoría de respuestas (${c} de 15) coincide con su programa de gobierno.`;
+  } else {
+    nombre.textContent = "🤝 ¡Empate!";
+    nombre.style.color = "#a07ab0";
+    programa.textContent = "Eres un votante de centro / cruzado";
+    texto.textContent = "Quedaste 7–7 (más una): coincides por partes con ambos planes. Te conviene leer los dos programas completos en los temas donde dudaste.";
+  }
+
+  document.getElementById('resultado').style.display = 'block';
+  document.getElementById('resultado').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+document.getElementById('btnReset').addEventListener('click', () => {
+  document.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
+  document.getElementById('resultado').style.display = 'none';
+  actualizarProgreso();
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+</script>
+</body>
+</html>
