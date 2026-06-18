@@ -179,45 +179,45 @@
 // value: "E" = De la Espriella · "C" = Cepeda. Orden A/B mezclado a propósito.
 // Selección de 10 temas donde ambos planes proponen algo en el mismo terreno (las menos obvias).
 const preguntas = [
-  { t:"Crisis de la salud y las EPS", o:[
-    {x:"Conservar las EPS pero hacerlas eficientes, con topes a sus gastos de administración, revisión trimestral de la UPC y un plan de choque de $10 billones que preserve lo que funciona.", v:"E"},
-    {x:"Eliminar la intermediación financiera, volver los CAPS la puerta de entrada al sistema (Atención Primaria) y que los recursos fluyan directo a una red pública de hospitales.", v:"C"}
+  { t:"La salud y las EPS", o:[
+    {x:"Mantener las EPS, pero vigilarlas de cerca e inyectarles plata para que atiendan mejor y más rápido.", v:"E"},
+    {x:"Quitarles a las EPS el manejo del dinero y que el Estado entregue la salud directo desde centros y hospitales públicos.", v:"C"}
   ]},
-  { t:"Anticorrupción en la contratación pública", o:[
-    {x:"Reformar la Ley 80 para que organizaciones comunitarias y Juntas de Acción Comunal contraten directamente, y crear una Unidad de Investigación de la Macrocorrupción en la Fiscalía.", v:"C"},
-    {x:"Llevar toda la contratación pública a tecnología blockchain para 2030 y crear un Bloque de Búsqueda contra la Corrupción dirigido por el presidente.", v:"E"}
+  { t:"Frenar la corrupción en los contratos del Estado", o:[
+    {x:"Que las juntas y organizaciones del barrio manejen las obras, y crear un grupo especial que persiga a los grandes corruptos.", v:"C"},
+    {x:"Poner todos los contratos en una tecnología que nadie pueda alterar, con un comando anticorrupción dirigido por el presidente.", v:"E"}
   ]},
-  { t:"Tierra y desarrollo del campo", o:[
-    {x:"Redistribuir tierras fértiles concentradas y subutilizadas, restituir las tierras despojadas y crear la Alianza Nacional Alimentaria para eliminar intermediarios.", v:"C"},
-    {x:"Acabar la falsa reforma agraria, volver propietario al campesino y expandir la frontera agrícola en 1,5 millones de hectáreas (la altillanura).", v:"E"}
+  { t:"La tierra y el campo", o:[
+    {x:"Repartir las tierras grandes y mal usadas, devolver las que fueron robadas y conectar al campesino con el comprador sin intermediarios.", v:"C"},
+    {x:"Volver al campesino dueño de su tierra y abrir muchas hectáreas nuevas para cultivar y producir más.", v:"E"}
   ]},
-  { t:"Reglas del juego democrático", o:[
-    {x:"Rechazo a una constituyente, compromiso de lealtad con la Constitución vigente y prohibir a rango constitucional la combinación de todas las formas de lucha.", v:"E"},
-    {x:"Un gran acuerdo nacional con una reforma política y electoral profunda y más mecanismos de participación directa de la ciudadanía.", v:"C"}
+  { t:"Las reglas de la democracia", o:[
+    {x:"Dejar la Constitución como está (sin reemplazarla por una nueva) y defender las instituciones actuales.", v:"E"},
+    {x:"Hacer una reforma política grande con un acuerdo nacional y darle a la gente más formas de decidir.", v:"C"}
   ]},
-  { t:"Acceso a vivienda", o:[
-    {x:"Programa País de Propietarios: comprar vivienda propia con intereses del 2% a 30 años.", v:"E"},
-    {x:"Crédito asequible a través de la banca pública reformada, dentro de una Revolución Urbana con movilidad limpia y mejoramiento barrial.", v:"C"}
+  { t:"Tener casa propia", o:[
+    {x:"Créditos de vivienda con intereses muy bajos (2%) a 30 años para que más gente compre casa.", v:"E"},
+    {x:"Créditos de vivienda más baratos con el banco del Estado, junto con mejorar los barrios y el transporte.", v:"C"}
   ]},
-  { t:"Lucha contra la pobreza", o:[
-    {x:"Duplicar Renta Ciudadana (a 1,6 millones de familias) y ampliar Colombia Mayor a más de 4,2 millones de adultos mayores.", v:"C"},
-    {x:"Reasignar subsidios eliminando su regresividad con cruce Sisbén IV–DIAN, y un Plan Cosecha Solidaria para matar el hambre.", v:"E"}
+  { t:"Ayudas contra la pobreza", o:[
+    {x:"Darles el subsidio mensual al doble de familias y subir la ayuda para los adultos mayores.", v:"C"},
+    {x:"Dar los subsidios solo a quien de verdad los necesita y un plan para que nadie pase hambre.", v:"E"}
   ]},
-  { t:"Mujeres y trabajo de cuidado", o:[
-    {x:"Tratar la violencia contra la mujer como problema de orden público, con rutas judiciales en 72 horas y meta de reducir 40% los feminicidios.", v:"E"},
-    {x:"Institucionalizar un Sistema Nacional de Cuidado con guarderías públicas y cuidadoras profesionalizadas y remuneradas.", v:"C"}
+  { t:"Las mujeres", o:[
+    {x:"Tratar la violencia contra la mujer como una emergencia: justicia en 72 horas y bajar los feminicidios.", v:"E"},
+    {x:"Crear guarderías y centros públicos, y pagarles a las mujeres que cuidan niños y mayores en casa.", v:"C"}
   ]},
-  { t:"Motor del crecimiento económico", o:[
-    {x:"No resignarse al 3% y crecer al 7% como Corea del Sur y Singapur, mediante una Gran Revolución de Desregulación.", v:"E"},
-    {x:"Un pacto productivo de reindustrialización con cadenas de valor estratégicas y las economías populares como socias.", v:"C"}
+  { t:"Cómo hacer crecer la economía", o:[
+    {x:"Quitarles trámites y trabas a las empresas para crecer muy rápido, como lo hicieron Corea del Sur y Singapur.", v:"E"},
+    {x:"Que el Estado impulse fábricas e industria propia y trabaje de la mano con los pequeños negocios.", v:"C"}
   ]},
-  { t:"Educación superior", o:[
-    {x:"Garantizar gratuidad y permanencia en la universidad pública, construir 80 proyectos de infraestructura y reformar el ICETEX condonando deudas.", v:"C"},
-    {x:"Créditos blandos y un programa de méritos, Universidad Virtual en Casa y ciclos cortos en IA y robótica.", v:"E"}
+  { t:"Estudiar en la universidad", o:[
+    {x:"Universidad pública gratis, más sedes nuevas y perdonar deudas del crédito educativo.", v:"C"},
+    {x:"Créditos fáciles y becas por méritos, universidad virtual desde casa y cursos cortos en tecnología.", v:"E"}
   ]},
-  { t:"Sector cultural y economía creativa", o:[
-    {x:"Crear una gran industria audiovisual y musical de derechos de autor y un bono 'Pase mi Cultura' para que 2,4 millones de jóvenes consuman cultura; pasar del asistencialismo a la inversión.", v:"E"},
-    {x:"Reconocer los derechos culturales como derechos fundamentales, crear el Estatuto del Artista con seguridad social y llevar 'caravanas culturales' a los territorios más apartados.", v:"C"}
+  { t:"La cultura y los artistas", o:[
+    {x:"Crear una gran industria de cine y música, y dar un bono a los jóvenes para que disfruten cultura.", v:"E"},
+    {x:"Darles seguridad social a los artistas y llevar arte y cultura gratis a los pueblos más alejados.", v:"C"}
   ]}
 ];
 
